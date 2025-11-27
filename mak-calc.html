@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Makina Airdrop Calculator</title>
+  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  padding: 16px;
+  background: #0b0b10;
+  color: #fff;
+}
+h1 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+p.small {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-top: 0;
+}
+label {
+  font-size: 13px;
+  opacity: 0.9;
+}
+input {
+  width: 100%;
+  padding: 9px 10px;
+  margin: 4px 0 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+.card {
+  background: #151520;
+  padding: 14px;
+  border-radius: 12px;
+  margin-top: 16px;
+}
+.card h2 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 4px 0;
+}
+.label-small {
+  font-size: 12px;
+  opacity: 0.75;
+}
+.value {
+  font-size: 16px;
+  font-weight: 600;
+}
+hr {
+  border: none;
+  border-top: 1px solid #2a2a3a;
+  margin: 10px 0;
+}
+button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  background: #2d6bff;
+  color: #fff;
+}
+button:active {
+  opacity: 0.8;
+}
+
+/* Logo inside screenshot range */
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 14px 0 10px; /* top + bottom spacing */
+}
+
+.logo-wrapper svg {
+  max-width: 200px; /* slightly larger for better balance */
+  height: auto;
+}
+
+
+@media (min-width: 640px) {
+  body { max-width: 480px; margin: 0 auto; }
+}
+  
+.maker {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.55;
+  margin: -4px 0 10px;
+}
+
+.maker a {
+  color: #FFFA68;
+  text-decoration: none;
+}
+
+.maker a:hover {
+  opacity: 0.8;
+}
+.disclaimer-bottom {
+  text-align: center;
+  font-size: 10px;
+  opacity: 0.33;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Makina Airdrop Calculator</h1>
+  <p class="maker">
+  made by <a href="https://x.com/mb__nft" target="_blank" rel="noopener">@mb__nft</a>
+</p>
+
+<p class="small">
+Season 0 + Season 1 summary · auto-counts days left until 29 Jan 2026 (assumed end of S1 - Pendle YT maturity end date).
+</p>
+
+<label>My Season 0 Points</label>
+<input id="s0" inputmode="numeric" pattern="[0-9,]*"
+       placeholder="e.g. 7,500,000"
+       oninput="formatInput('s0'); calc();">
+
+<label>My Current Season 1 Points</label>
+<input id="s1current" inputmode="numeric" pattern="[0-9,]*"
+       placeholder="e.g. 50,000,000"
+       oninput="formatInput('s1current'); calc();">
+
+<label>My Season 1 Points per Day</label>
+<input id="s1day" inputmode="numeric" pattern="[0-9,]*"
+       placeholder="e.g. 1,000,000"
+       oninput="formatInput('s1day'); calc();">
+
+<!-- Everything inside this wrapper will be turned into an image -->
+<div id="resultCard">
+
+  <!-- LOGO that appears in screenshot -->
+
+  <div class="logo-wrapper">
+    <a href="https://makina.finance" target="_blank" rel="noopener">
+      <svg width="173" height="31" viewBox="0 0 173 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 1">
+      <path id="Vector" d="M56.6781 4.39258H64.6365V25.8205H61.2959V8.7088C61.2959 8.12659 60.8094 7.63631 60.2316 7.63631C59.6538 7.63631 59.2585 8.00402 59.1086 8.7088L55.616 25.8205H48.4461L44.9534 8.7088C44.8014 8.00402 44.4061 7.63631 43.8305 7.63631C43.2549 7.63631 42.7683 8.12659 42.7683 8.7088V25.8205H39.4277V4.39258H47.3861L50.9396 21.5962C51.0612 22.1478 51.4565 22.5767 52.0343 22.5767C52.6425 22.5767 53.0074 22.1478 53.129 21.5962L56.6825 4.39258H56.6781Z" fill="#FFFA68"/>
+      <path id="Vector_2" d="M68.1914 20.005V16.759H72.8396L76.4539 4.39258H84.838L88.4523 16.759H93.1004V20.005H89.3645L91.0956 25.8205H87.5726L85.9023 20.005H75.3917L73.7214 25.8205H70.1984L71.9295 20.005H68.1936H68.1914ZM76.3322 16.759H84.9596L82.7419 9.01523C82.5291 8.31045 81.8297 7.69979 80.7676 7.69979H80.5243C79.4622 7.69979 78.7628 8.31264 78.5499 9.01523L76.3322 16.759Z" fill="#FFFA68"/>
+      <path id="Vector_3" d="M96.5645 4.39233H99.9051V11.5868C99.9051 12.2915 100.392 12.6571 100.967 12.6571C101.363 12.6571 101.667 12.4732 101.971 12.1668L109.595 4.39014H114.304L103.611 15.0734L114.334 25.818H109.564L101.879 17.9823C101.606 17.7065 101.363 17.5533 100.967 17.5533C100.389 17.5533 99.9051 18.0436 99.9051 18.6258V25.8202H96.5645V4.39233Z" fill="#FFFA68"/>
+      <path id="Vector_4" d="M117.525 4.39258H120.866V25.8205H117.525V4.39258Z" fill="#FFFA68"/>
+      <path id="Vector_5" d="M139.157 21.8413C139.278 22.209 139.613 22.5767 140.16 22.5767C140.738 22.5767 141.224 22.0865 141.224 21.5043V4.39258H144.565V25.8205H137.091L130.529 8.37173C130.408 8.00402 130.073 7.63631 129.526 7.63631C128.948 7.63631 128.464 8.12659 128.464 8.7088V25.8205H125.123V4.39258H132.597L139.159 21.8413H139.157Z" fill="#FFFA68"/>
+      <path id="Vector_6" d="M148.088 20.005V16.759H152.736L156.35 4.39258H164.734L168.349 16.759H172.997V20.005H169.261L170.992 25.8205H167.469L165.799 20.005H155.288L153.618 25.8205H150.095L151.826 20.005H148.09H148.088ZM156.229 16.759H164.856L162.638 9.01523C162.426 8.31045 161.726 7.69979 160.664 7.69979H160.421C159.359 7.69979 158.659 8.31264 158.446 9.01523L156.229 16.759Z" fill="#FFFA68"/>
+      <path id="Vector_7" d="M10.8126 30.1169C10.5998 30.1169 10.3869 30.1038 10.1741 30.0797C9.99161 30.06 9.81133 30.0316 9.63105 29.9944C9.36606 29.9396 9.11193 29.8674 8.86866 29.7821C7.93251 29.4559 7.06369 28.9066 6.25135 28.123C5.32606 27.2431 4.60711 26.1947 4.04455 25.1988C3.93377 25.4855 3.823 25.7745 3.71223 26.0677C3.61231 26.3304 3.51457 26.5909 3.41683 26.8535C3.41248 26.8645 3.40814 26.8732 3.40597 26.8841C3.40162 26.8973 3.39511 26.9126 3.39076 26.9257C3.3104 27.138 3.2322 27.3525 3.15184 27.5692C2.99762 27.9851 2.84558 28.401 2.69354 28.8168V28.8256C2.60231 29.1342 2.45027 29.6551 1.97893 29.9287C1.63141 30.1366 1.22958 30.1432 0.947211 30.06C0.747383 30.0009 0.573619 29.8981 0.430264 29.7624C0.356414 29.6967 0.291253 29.6201 0.232608 29.5369C0.130522 29.3903 -0.149672 28.8956 0.102285 28.2696C0.265188 27.6655 0.499769 27.0943 0.725662 26.5405C0.816888 26.3129 0.910286 26.0896 0.992824 25.8664C1.07319 25.6519 1.15356 25.4374 1.23392 25.2251C1.399 24.7873 1.5619 24.3561 1.72698 23.9337C1.98762 23.2552 2.24827 22.5964 2.50674 21.9507C1.09708 18.4224 0.449812 14.8175 0.180479 11.7861C0.0957688 10.8712 0.0436397 9.94757 0.0219193 9.02173C0.0219193 9.01298 0.0219193 9.00641 0.0219193 8.99765C0.0219193 8.98671 0.0219193 8.97577 0.0219193 8.96482C0.0197472 8.85101 0.0175752 8.73719 0.0154031 8.62338C-0.00197323 7.6844 0.00888699 6.72135 0.102285 5.76049C0.197855 4.73177 0.388995 3.71181 0.745211 2.74438C0.814716 2.54958 0.916802 2.28256 1.0645 1.98926C1.65313 0.805148 2.48719 0.148522 3.55584 0.0281403C3.80128 -0.00469098 4.05324 -0.00250222 4.30954 0.0281403C5.25872 0.137578 6.05369 0.638803 6.67707 1.12908C6.81608 1.23633 6.95509 1.35234 7.09845 1.4771C8.30176 2.51675 9.27484 3.75997 10.1589 4.9791C10.363 5.25707 10.5694 5.54599 10.7844 5.8546C11.4534 4.94408 12.2093 4.02918 13.0542 3.17557C14.1185 2.08557 15.3761 1.07874 16.8531 0.494345C18.3127 -0.0944299 19.6007 -0.0922411 20.6868 0.196674C21.2102 0.330188 21.725 0.540309 22.2246 0.829224C23.9231 1.81197 25.1199 3.40539 25.9735 4.91344C26.0886 4.61139 26.2059 4.30715 26.3232 3.99854C26.3276 3.98541 26.3319 3.97227 26.3384 3.96133C26.3471 3.93944 26.3558 3.91756 26.3623 3.89567C26.4579 3.63958 26.5556 3.3835 26.6534 3.12085C26.7294 2.9173 26.8011 2.68091 26.8793 2.4292C27.0509 1.87326 27.2442 1.2429 27.5656 0.680389C27.8871 0.0959917 28.4931 -0.0747311 28.9753 0.0281403C29.0296 0.0390841 29.0817 0.0544054 29.1339 0.0719154C29.1838 0.0894254 29.2338 0.109124 29.2816 0.133201C29.7247 0.352076 30.0896 0.851112 29.9962 1.49679C29.9136 2.1578 29.6378 2.78159 29.3945 3.33316C29.3033 3.53671 29.2186 3.73151 29.1577 3.89129C28.8037 4.84559 28.4583 5.7583 28.1108 6.64912C27.9088 7.17004 27.7046 7.68221 27.5048 8.18563C27.5048 8.18781 27.5048 8.19219 27.507 8.19438C28.984 11.9547 29.8333 16.2096 29.9831 20.6374C29.9831 20.6462 29.9831 20.655 29.9831 20.6637C29.9831 20.6703 29.9831 20.6747 29.9831 20.6812C29.9831 20.6965 29.9831 20.7119 29.9831 20.7294C29.9831 20.7294 29.9831 20.7337 29.9831 20.7359V20.7928C29.9831 20.7928 29.9831 20.795 29.9831 20.7972C29.9831 20.8147 29.9831 20.8322 29.9831 20.8498C29.9831 20.8563 29.9831 20.8629 29.9831 20.8673C29.9831 20.8782 29.9831 20.8913 29.9831 20.9045C29.9831 20.9198 29.9831 20.9329 29.9831 20.9482V20.9548C29.9853 21.0621 29.9875 21.1715 29.9896 21.2788C30.0092 22.1433 30.007 23.0298 29.9397 23.9206C29.8506 25.201 29.6356 26.4749 29.1491 27.659C29.0817 27.8253 29.01 27.9807 28.934 28.1252C28.8167 28.3572 28.669 28.6045 28.4866 28.8409C27.8241 29.712 27.0509 30.0053 26.4492 30.0819C26.4449 30.0819 26.4427 30.0819 26.4383 30.0819C26.3341 30.0951 26.2277 30.1038 26.1191 30.106C25.3176 30.1323 24.4878 29.8171 23.5908 29.178C22.9566 28.7249 22.3896 28.2062 21.864 27.6458C20.8649 26.593 20.0178 25.4177 19.2858 24.3583C19.2641 24.3277 19.2402 24.2949 19.2185 24.2642C19.0013 24.5509 18.7775 24.8333 18.5495 25.1113C18.5364 25.1288 18.5212 25.1463 18.506 25.1638C17.3071 26.6762 15.7475 28.3747 13.771 29.3465C12.7675 29.8543 11.7749 30.1082 10.7931 30.1082L10.8126 30.1169ZM24.9288 26.8907C25.07 27.0002 25.2046 27.0965 25.3393 27.1818C25.5391 27.3066 25.7129 27.3919 25.8693 27.4423C26.1038 27.5145 26.1799 27.4685 26.2211 27.4423C26.358 27.3569 26.5231 27.149 26.686 26.7988C26.7207 26.7244 26.7555 26.6412 26.7902 26.5515C26.8011 26.5252 26.8098 26.4967 26.8206 26.4705C26.8337 26.4355 26.8445 26.4004 26.8575 26.3632C26.8988 26.2428 26.9357 26.1225 26.9727 25.9977C27.0595 25.6891 27.1377 25.3279 27.2029 24.9121C27.2485 24.6254 27.2833 24.3299 27.3137 24.0081C27.3506 23.6207 27.3745 23.2202 27.3897 22.7868C27.4006 22.4585 27.4049 22.1192 27.4027 21.7712C27.4027 21.7625 27.4027 21.7537 27.4027 21.7428C27.4027 21.7143 27.4027 21.688 27.4027 21.6596C27.4027 21.5108 27.3984 21.3597 27.394 21.2087C27.3854 20.841 27.3701 20.4755 27.3506 20.1121C27.2007 17.3871 26.7403 14.6271 25.9735 11.8956C24.8332 14.5724 23.593 17.2493 22.1442 19.7882C21.7293 20.528 21.2971 21.2525 20.8453 21.9595C20.8801 22.012 20.917 22.0645 20.9518 22.117C21.0408 22.2484 21.1277 22.3775 21.2167 22.5045C21.7554 23.2836 22.2398 23.9447 22.7263 24.5575C23.3149 25.3017 23.821 25.8708 24.3163 26.3479C24.4183 26.4464 24.5161 26.5361 24.6117 26.6193C24.6507 26.6543 24.6898 26.6872 24.7289 26.72C24.7984 26.7791 24.8658 26.8338 24.9331 26.8863L24.9288 26.8907ZM5.82563 22.9619C6.07107 23.45 6.33171 23.9118 6.60539 24.3496C7.41339 25.6366 9.0055 27.613 11.1059 27.4576C11.4947 27.4182 11.8922 27.311 12.3027 27.1402C13.2649 26.7309 14.2879 25.9517 15.3653 24.807C15.4782 24.6866 15.589 24.5663 15.6997 24.4459C16.056 24.0453 16.4187 23.6032 16.7879 23.1217C17.0855 22.7343 17.3744 22.3403 17.6568 21.9376C16.2884 19.8342 15.0134 17.6804 13.7688 15.5749C12.8044 13.9442 11.8205 12.2808 10.7931 10.6458C10.5325 11.0879 10.2914 11.5147 10.0676 11.9175C8.96206 13.9005 7.89341 16.0608 6.78567 18.5538C6.5967 18.9827 6.40991 19.4117 6.22745 19.8364C5.98419 20.4011 5.74309 20.9723 5.50199 21.5567C5.45203 21.6771 5.40208 21.7997 5.34995 21.9222C5.49113 22.2484 5.64752 22.5986 5.8278 22.9641L5.82563 22.9619ZM18.3801 18.1051C18.6646 18.5691 18.9535 19.0353 19.2424 19.4949C19.8788 18.4399 20.4739 17.3587 21.0365 16.2665C21.3949 15.5661 21.7402 14.8591 22.0725 14.15C22.6764 12.8499 23.2585 11.5213 23.8362 10.1774C24.1143 9.52952 24.3923 8.86852 24.6703 8.19438C24.6399 8.12215 24.6073 8.04992 24.5747 7.97551C24.5096 7.83105 24.4422 7.68659 24.3749 7.54432C24.1121 6.98838 23.7906 6.35145 23.3996 5.72109C22.659 4.55011 21.2732 2.82975 19.4509 2.6634C17.6546 2.58679 15.8779 3.99416 14.592 5.37308C14.3205 5.66418 14.0577 5.96404 13.8036 6.26828C13.6406 6.46745 13.4864 6.66444 13.3366 6.85486C12.9999 7.28824 12.6741 7.73037 12.3591 8.18125C13.721 10.2759 14.9917 12.4209 16.2341 14.5177C16.9356 15.7018 17.6502 16.9056 18.3801 18.1007V18.1051ZM2.61969 8.66715C2.61969 8.73063 2.62186 8.79629 2.62403 8.85976C2.69788 11.9547 3.1779 15.1021 4.05324 18.2189C5.46941 14.9117 7.11799 11.4162 9.19013 8.17906C9.06849 7.99958 8.94903 7.82229 8.82522 7.645C8.734 7.51149 8.6406 7.37579 8.54503 7.24008C8.38212 7.01027 8.21705 6.78045 8.0498 6.55282C7.64797 6.00344 7.24614 5.465 6.82694 4.96159C6.45986 4.52603 6.1232 4.15832 5.79087 3.83438C5.76264 3.80812 5.73223 3.77966 5.70399 3.7534C5.48244 3.54766 5.25438 3.35505 5.0198 3.17557C4.98287 3.14711 4.94812 3.12085 4.91337 3.09677C4.71137 2.95013 4.54412 2.84944 4.40511 2.7794C4.20528 2.67872 4.06627 2.64589 3.9707 2.63713C3.87296 2.63057 3.82734 2.65902 3.79911 2.67653C3.49719 2.86695 3.05844 3.64834 2.813 5.21986C2.80865 5.24613 2.80431 5.27239 2.79997 5.30085C2.79997 5.30304 2.79997 5.30741 2.79997 5.3096C2.79997 5.32055 2.79779 5.3293 2.79562 5.34025C2.79128 5.36651 2.78911 5.39278 2.78476 5.41904C2.78476 5.42561 2.78476 5.42998 2.78259 5.43655C2.75218 5.65762 2.72612 5.88743 2.70222 6.12382C2.69571 6.19386 2.68919 6.26609 2.68268 6.33832C2.65444 6.69071 2.63489 7.04966 2.62186 7.43707C2.61317 7.73693 2.60883 8.04773 2.611 8.36729C2.611 8.40012 2.611 8.43077 2.611 8.4636C2.611 8.53145 2.611 8.5993 2.61317 8.66715H2.61969Z" fill="#FFFA68"/>
+      </g>
+      </svg>
+    </a>
+  </div>
+
+  <div class="card">
+    <h2>Timing</h2>
+    <div class="row">
+      <div class="label-small">Days left until 29 Jan 2026</div>
+      <div id="daysLeft" class="value"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Season 0</h2>
+    <div class="row">
+      <div class="label-small">Assumed S0 total points</div>
+      <div id="s0totalAssumed" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">My share of S0 points</div>
+      <div id="s0share" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">S0 Airdrop $MAK (0.5% airdrop allocation for S0)</div>
+      <div id="s0air" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">S0 ICO $MAK (4.65% ICO allocation for S0)</div>
+      <div id="s0ico" class="value"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Season 1</h2>
+    <div class="row">
+      <div class="label-small">Assumed S1 total points</div>
+      <div id="s1totalAssumed" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">My total S1 points (current + future)</div>
+      <div id="s1totalMine" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">My share of S1 points</div>
+      <div id="s1share" class="value"></div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="label-small">S1 Airdrop $MAK (1.5% airdrop allocation for S1)</div>
+      <div id="s1air" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">$MAK / day (S1, at current rate)</div>
+      <div id="makDay" class="value"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Total & Rank</h2>
+    <div class="row">
+      <div class="label-small">Total $MAK (S0 airdrop + S0 ICO + S1)</div>
+      <div id="totalMak" class="value"></div>
+    </div>
+
+    <div class="row">
+      <div class="label-small">Total points (S0 + S1 mine)</div>
+      <div id="myAllPoints" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Share of all points (S0+S1)</div>
+      <div id="globalShare" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Rank estimate</div>
+      <div id="rankLabel" class="value"></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="label-small">FDV #1 (fixed)</div>
+      <div id="fdv1display" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Token price @ FDV #1</div>
+      <div id="price1" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Portfolio value @ FDV #1</div>
+      <div id="val1" class="value"></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="label-small">FDV #2 (fixed)</div>
+      <div id="fdv2display" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Token price @ FDV #2</div>
+      <div id="price2" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Portfolio value @ FDV #2</div>
+      <div id="val2" class="value"></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="label-small">FDV #3 (fixed)</div>
+      <div id="fdv3display" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Token price @ FDV #3</div>
+      <div id="price3" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Portfolio value @ FDV #3</div>
+      <div id="val3" class="value"></div>
+    </div>
+
+    <hr>
+
+    <label>Custom FDV (USD)</label>
+    <input id="fdvCustom" inputmode="numeric" pattern="[0-9,]*"
+           placeholder="e.g. 300,000,000"
+           oninput="formatInput('fdvCustom'); calc();">
+
+    <div class="row">
+      <div class="label-small">Token price @ Custom FDV</div>
+      <div id="priceCustom" class="value"></div>
+    </div>
+    <div class="row">
+      <div class="label-small">Portfolio value @ Custom FDV</div>
+      <div id="valCustom" class="value"></div>
+    </div>
+  </div>
+
+</div><!-- /resultCard wrapper -->
+
+<button onclick="makeScreenshot()">Share result card (image)</button>
+
+<!-- html2canvas for screenshot -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<script>
+function fmtInt(n) {
+  return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+}
+function fmtPct(n) {
+  return (n * 100).toFixed(3) + '%';
+}
+function fmtUsd(n) {
+  return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function fmtPrice(n) {
+  return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 4, maximumFractionDigits: 6 });
+}
+
+// auto-format input (with commas) while typing
+function formatInput(id) {
+  const input = document.getElementById(id);
+  if (!input) return;
+  const raw = input.value.replace(/,/g, '');
+  if (raw === '') {
+    input.value = '';
+    return;
+  }
+  const num = Number(raw);
+  if (isNaN(num)) return;
+  input.value = num.toLocaleString('en-US');
+}
+
+function calc() {
+  // constants
+  const totalSupply = 1000000000;
+  const totalS0Points = 1500000000;
+  const totalS1Points = 15000000000; // assumption
+  const s0AirdropPool = 5000000;
+  const s0ICOPool = 46500000;
+  const s1AirdropPool = 15000000;
+
+  const fdv1 = 70000000;
+  const fdv2 = 150000000;
+  const fdv3 = 200000000;
+
+  const s0 = Number((document.getElementById('s0').value || '').replace(/,/g, '')) || 0;
+  const s1current = Number((document.getElementById('s1current').value || '').replace(/,/g, '')) || 0;
+  const s1day = Number((document.getElementById('s1day').value || '').replace(/,/g, '')) || 0;
+  const fdvCustom = Number((document.getElementById('fdvCustom').value || '').replace(/,/g, '')) || 0;
+
+  // days left – local date, 29 Jan 2026
+  const today = new Date();
+  const endDate = new Date(2026, 0, 29); // year, month(0-based), day
+  const diffMs = endDate.getTime() - today.getTime();
+  const daysLeft = Math.max(0, Math.floor(diffMs / (1000 * 60 * 60 * 24)));
+
+  // Season 0
+  const s0share = totalS0Points > 0 ? (s0 / totalS0Points) : 0;
+  const s0airdrop = Math.floor(s0AirdropPool * s0share);
+  const s0ico = Math.floor(s0ICOPool * s0share);
+
+  // Season 1
+  const s1totalMine = s1current + (s1day * daysLeft);
+  const s1share = totalS1Points > 0 ? (s1totalMine / totalS1Points) : 0;
+  const s1airdrop = Math.floor(s1AirdropPool * s1share);
+  const makPerDay = s1day * (s1AirdropPool / totalS1Points); // with 15B/15M → 0.001 * points/day
+
+  const totalMak = s0airdrop + s0ico + s1airdrop;
+
+  // Combined S0+S1 points for rank
+  const myAllPoints = s0 + s1totalMine;
+  const totalAllPoints = totalS0Points + totalS1Points;
+  const globalShare = totalAllPoints > 0 ? (myAllPoints / totalAllPoints) : 0;
+
+  let rankLabel;
+  if (globalShare >= 0.005) {
+    rankLabel = 'Whale (top ~0.5%)';
+  } else if (globalShare >= 0.001) {
+    rankLabel = 'Shark (top ~1–5%)';
+  } else if (globalShare >= 0.0001) {
+    rankLabel = 'Dolphin (top ~5–20%)';
+  } else if (globalShare > 0) {
+    rankLabel = 'Shrimp (long tail)';
+  } else {
+    rankLabel = '-';
+  }
+
+  // FDV to price
+  const price1 = fdv1 / totalSupply;
+  const price2 = fdv2 / totalSupply;
+  const price3 = fdv3 / totalSupply;
+  const priceCustom = fdvCustom > 0 ? fdvCustom / totalSupply : 0;
+
+  const val1 = totalMak * price1;
+  const val2 = totalMak * price2;
+  const val3 = totalMak * price3;
+  const valCustom = totalMak * priceCustom;
+
+  // write to DOM
+  document.getElementById('daysLeft').innerText = daysLeft;
+
+  document.getElementById('s0share').innerText = s0 > 0 ? fmtPct(s0share) : '0%';
+  document.getElementById('s0air').innerText = fmtInt(s0airdrop);
+  document.getElementById('s0ico').innerText = fmtInt(s0ico);
+
+  document.getElementById('s0totalAssumed').innerText = fmtInt(totalS0Points);
+  document.getElementById('s1totalAssumed').innerText = fmtInt(totalS1Points);
+  document.getElementById('s1totalMine').innerText = fmtInt(s1totalMine);
+  document.getElementById('s1share').innerText = s1totalMine > 0 ? fmtPct(s1share) : '0%';
+  document.getElementById('s1air').innerText = fmtInt(s1airdrop);
+  document.getElementById('makDay').innerText = makPerDay.toFixed(2);
+
+  document.getElementById('totalMak').innerText = fmtInt(totalMak);
+  document.getElementById('myAllPoints').innerText = fmtInt(myAllPoints);
+  document.getElementById('globalShare').innerText = myAllPoints > 0 ? fmtPct(globalShare) : '0%';
+  document.getElementById('rankLabel').innerText = rankLabel;
+
+  document.getElementById('fdv1display').innerText = fmtUsd(fdv1);
+  document.getElementById('fdv2display').innerText = fmtUsd(fdv2);
+  document.getElementById('fdv3display').innerText = fmtUsd(fdv3);
+
+  document.getElementById('price1').innerText = fmtPrice(price1);
+  document.getElementById('price2').innerText = fmtPrice(price2);
+  document.getElementById('price3').innerText = fmtPrice(price3);
+
+  document.getElementById('val1').innerText = fmtUsd(val1);
+  document.getElementById('val2').innerText = fmtUsd(val2);
+  document.getElementById('val3').innerText = fmtUsd(val3);
+
+  document.getElementById('priceCustom').innerText = priceCustom ? fmtPrice(priceCustom) : '-';
+  document.getElementById('valCustom').innerText = fdvCustom ? fmtUsd(valCustom) : '-';
+}
+
+// screenshot / share result card
+function makeScreenshot() {
+  const target = document.getElementById('resultCard');
+  if (!target) return;
+
+  html2canvas(target, { backgroundColor: '#0b0b10', scale: 2 }).then(canvas => {
+    const imgData = canvas.toDataURL('image/png');
+
+    // build filename: makina-MM-DD-YY.png
+    const today = new Date();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const yy = String(today.getFullYear()).slice(-2);
+    const filename = `makina-${mm}-${dd}-${yy}.png`;
+
+    const link = document.createElement('a');
+    link.href = imgData;
+    link.download = filename;
+
+    // for iOS/Safari, this still usually opens the share sheet,
+    // but the filename metadata is set
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+}
+
+
+// initial render
+calc();
+</script>
+<p class="disclaimer-bottom">
+  * Community-made calculator — not an official Makina Finance tool. Numbers can be wrong.
+  <br> DYOR and gmak every day!
+</p>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
